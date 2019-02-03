@@ -2,8 +2,9 @@ const Immutable = require('immutable');
 const assert = require('assert');
 
 /**
- * Gets distinct strings from each entry and joins into a string, unless the
- * property is on the skipList, then joins strings in nested subarray.
+ * Gets distinct strings from entries and joins them into a single string,
+ * flattening entries, unless the entry is on the skipList, then joins strings
+ * in nested subarray while maintaining original nesting structure.
  * @param {Map <K, V>} errMap 
  * @param {List <T>} skipList 
  */
@@ -63,6 +64,7 @@ it('should tranform errors', () => {
     },
   });
 
+  // list of keys to keep nested
   const skipList = Immutable.fromJS(['url', 'urls']);
 
   // in this specific case,
